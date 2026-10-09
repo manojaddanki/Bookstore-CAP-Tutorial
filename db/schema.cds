@@ -3,6 +3,10 @@ namespace tutorial.db;
 entity Books:cuid,managed{
     title:String;
     author:Association to Authors;
+    genre:String;
+    publishedAt:Date;
+    pages:Integer;
+    price:Decimal(9,2);
     Chapters:Composition of many Chapters on Chapters.book=$self;
 }
 entity Authors:cuid,managed{
@@ -11,6 +15,8 @@ entity Authors:cuid,managed{
     on books.author=$self;
 }
 entity Chapters:cuid,managed{
+    key book:Association to Books;
     number:Integer;
-    key book:Association to Books
+    title:String;
+    pages:Integer;
 }
