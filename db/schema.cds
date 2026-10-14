@@ -1,4 +1,4 @@
-using { cuid,managed } from '@sap/cds/common';
+using { cuid,managed,sap.common.Currencies } from '@sap/cds/common';
 namespace tutorial.db;
 entity Books:cuid,managed{
     title:String;
@@ -7,6 +7,7 @@ entity Books:cuid,managed{
     publishedAt:Date;
     pages:Integer;
     price:Decimal(9,2);
+    currency:Association to Currencies;
     stock:Integer;
     status:Association to BookStatus;  
     Chapters:Composition of many Chapters on Chapters.book=$self;
