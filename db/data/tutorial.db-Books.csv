@@ -1,4 +1,4 @@
-ID,title,author_ID,genre,publishedAt,pages,price,currency_code,stock,status_code,createdAt,createdBy,modifiedAt,modifiedBy
+ID,title,author_ID,genre_code,publishedAt,pages,price,currency_code,stock,status_code,createdAt,createdBy,modifiedAt,modifiedBy
 96432431-8b76-407e-b828-87c3f25543c2,title-964324,86331318-233f-4a95-97b5-720a1d423020,genre-964324,2006-09-09,63,2119584.19,547,58,A,2015-08-09T00:00:00.000Z,createdBy.ko2s@example.com,2006-09-27T00:00:00.000Z,modifiedBy.ko2s@example.net
 964325f0-312e-4842-9ea1-b773546e9e55,title-964325,86331318-233f-4a95-97b5-720a1d423020,genre-964325,2019-08-19,45,657739.54,547,89,A,2007-08-21T00:00:00.000Z,createdBy.ko2t@example.org,2002-08-03T00:00:00.000Z,modifiedBy.ko2t@example.net
 96432625-4776-4acb-bf1e-784ef77bbe5b,title-964326,86331318-233f-4a95-97b5-720a1d423020,genre-964326,2002-01-03,68,3028086.79,547,50,A,2014-01-12T00:00:00.000Z,createdBy.ko2u@example.org,2010-04-07T00:00:00.000Z,modifiedBy.ko2u@example.com

@@ -8,7 +8,7 @@ annotate service.Books with @(
             {
                 $Type : 'UI.DataField',
                 Label : 'genre',
-                Value : genre,
+                Value : genre_code,
             },
             {
                 $Type : 'UI.DataField',
@@ -70,7 +70,7 @@ annotate service.Books with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : genre,
+            Value : genre_code,
             Label : 'Genre',
         },
         {
@@ -114,7 +114,7 @@ annotate service.Books with @(
         },
         Description : {
             $Type : 'UI.DataField',
-            Value : genre,
+            Value : genre_code,
         },
     },
     UI.FieldGroup #EntryInformation : {
@@ -207,5 +207,25 @@ annotate service.Books with {
 
 annotate service.Currencies with {
     code @Common.Text : descr
+};
+
+annotate service.Books with {
+    genre @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'GenresVH',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : genre_code,
+                    ValueListProperty : 'description',
+                },
+            ],
+        },
+        Common.ValueListWithFixedValues : true,
+)};
+
+annotate service.GenresVH with {
+    code @Common.Text : description
 };
 
