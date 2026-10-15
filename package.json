@@ -22,11 +22,15 @@
     "app/*"
   ],
   "devDependencies": {
-    "cds-plugin-ui5": "^0.17.0"
+    "cds-plugin-ui5": "^0.17.0",
+    "@cap-js/cds-typer": ">=0.1"
   },
   "sapux": [
     "app/bookstore-listview",
     "app/project1",
     "app/library"
-  ]
+  ],
+  "imports": {
+    "#cds-models/*": "./@cds-models/*/index.js"
+  }
 }

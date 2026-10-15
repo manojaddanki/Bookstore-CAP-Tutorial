@@ -3,7 +3,7 @@ const cds = require('@sap/cds')
 module.exports = class BookstoreService extends cds.ApplicationService { init() {
 
   //const { Books, Authors, GenresVH, BookStatus, Chapters } = cds.entities('BookstoreService')
-  const { Books } = cds.entities('BookstoreService')
+ // const { Books } = cds.entities('BookstoreService')
 
   //this.before (['CREATE', 'UPDATE','READ'], Books, async (req) => {
     this.before ('READ', Books, async (req) => {
