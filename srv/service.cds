@@ -1,9 +1,8 @@
 using {tutorial.db as db} from '../db/schema';
 service BookstoreService {
-
     entity Books as projection on db.Books actions{
-        @(Common.SideEffects:{TargetProperties:['stock']})
-        action addStock();
+        @(Common.SideEffects:{TargetProperties:['stock']})//data refershing dyanamically for add thi function
+        action addStock();//for used to unbound actions exercise
         action changePublishDate(newDate:Date);
        // @(Common.SideEffects:{TargetProperties:['status_code','stock']})
          @(Common.SideEffects:{TargetEntities:['in']})
@@ -13,7 +12,6 @@ service BookstoreService {
                                 },
            Common.ValueList : {
             $Type : 'Common.ValueListType',
-           
             CollectionPath : 'BookStatus',
             Parameters : [
                 {
@@ -27,6 +25,9 @@ service BookstoreService {
         },)
         newStatus:String);
     };
+    //this code is used for refresh book table item data
+    @(Common.SideEffects:{TargetEntities:['/BookstoreService.EntityContainer/Books']})
+    action addDiscount();
     entity Authors as projection on db.Authors;
     entity Chapters as projection on db.Chapters;
     entity BookStatus as projection on db.BookStatus;

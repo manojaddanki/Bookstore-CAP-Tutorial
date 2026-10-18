@@ -5,7 +5,15 @@ module.exports = class BookstoreService extends cds.ApplicationService { init() 
   //const { Books, Authors, GenresVH, BookStatus, Chapters } = cds.entities('BookstoreService')
   const { Books } = cds.entities('BookstoreService')
 
+
   //this.before (['CREATE', 'UPDATE','READ'], Books, async (req) => {
+  
+  this.on('addDiscount',async()=>{
+  //  await UPDATE(Books).set({price:{'*=':0.9}});
+  //await UPDATE(Books).set({price:{func:ROUND,args:[{xpr:[{ref:['price'],'*',{val:0.9}}]}]}});
+//await UPDATE(Books).set({price:{func:'ROUND',args:[{xpr:[{ref:['price']},'*',{ val: 0.9 }]}]}});
+await UPDATE(Books).set({price:{func:'ROUND',args:[{xpr:[{ref:['price']},'*',{ val: 0.9 }]},{ val: 2 }]}});
+})
     this.on('addStock',Books,async(req)=> {
     //console.log('AddStock called')
     //console.log(req.params)
