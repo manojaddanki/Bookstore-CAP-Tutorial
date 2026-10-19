@@ -44,6 +44,10 @@ type BookStatusCode:String(1) enum{
 }
 entity Authors:cuid,managed{
  name:String;
+ fileName:String;
+ fileType:String @Core.IsMediaType;
+ content:LargeBinary @Core.MediaType        :fileType
+                     @Core.ContentDisposition:fileName;
  books:Association to many Books
     on books.author=$self;
 }

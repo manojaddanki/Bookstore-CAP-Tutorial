@@ -7,12 +7,21 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-bookstore-listview": "cds watch --open bookstorelistview/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-library": "cds watch --open library/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-library": "cds watch --open library/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-authors-listview": "cds watch --open authorslistview/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+   "cds": { "requires": {
+   "db": {
+      "kind": "sqlite",
+      "credentials": { "url": "db.sqlite" } 
+   }
+   }
+  },
+
   "dependencies": {
     "@cap-js/sqlite": "^3.1.1",
     "@sap/cds": "^10.1.1",
@@ -28,7 +37,8 @@
   "sapux": [
     "app/bookstore-listview",
     "app/project1",
-    "app/library"
+    "app/library",
+    "app/authors-listview"
   ],
   "imports": {
     "#cds-models/*": "./@cds-models/*/index.js"
