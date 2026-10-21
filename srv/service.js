@@ -4,6 +4,8 @@ module.exports = class BookstoreService extends cds.ApplicationService { init() 
 
   //const { Books, Authors, GenresVH, BookStatus, Chapters } = cds.entities('BookstoreService')
   const { Books } = cds.entities('BookstoreService')
+ const { Authors} = cds.entities('BookstoreService')
+
 
 
   //this.before (['CREATE', 'UPDATE','READ'], Books, async (req) => {
@@ -59,7 +61,19 @@ await UPDATE(Books).set({price:{func:'ROUND',args:[{xpr:[{ref:['price']},'*',{ v
     }
    }  
 })
-
+    this.after ('READ', Authors, async (authors, req) => {
+     const ids=authors.map(author=>author.ID)
+     const bookCountS=await SELECT.from(Books)
+     .columns('author_ID',{func:'count'})
+     .where({author_ID:{in:ids}})
+     .groupBy('author_ID');
+     for(const author of authors){
+      const bookCount=bookCountS.find(bookCount=>bookCount.author_ID=author.ID)
+      console.log(bookCount)
+      author.bookCount=bookCount
+     }
+      //console.log('After READ Authors', authors)
+   })
 
   // this.before (['CREATE', 'UPDATE'], Authors, async (req) => {
   //   console.log('Before CREATE/UPDATE Authors', req.data)

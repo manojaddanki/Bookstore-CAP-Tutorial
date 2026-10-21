@@ -35,6 +35,11 @@ annotate service.Books with @(
                 Value : stock,
                 Label : 'Stock',
             },
+            {
+                $Type : 'UI.DataField',
+                Value : author.bookcount,
+                Label : 'bookcount',
+            },
         ],
     },
     UI.Facets : [

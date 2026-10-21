@@ -10,6 +10,7 @@ entity Books:cuid,managed{
     currency:Association to Currencies;
     stock:Integer;
     status:Association to BookStatus;  
+   // virtual bookcount :Integer;//virtual field concept
     Chapters:Composition of many Chapters on Chapters.book=$self;
 }
 entity Genres{
@@ -45,11 +46,13 @@ type BookStatusCode:String(1) enum{
 entity Authors:cuid,managed{
  name:String;
  fileName:String;
+ virtual bookcount :Integer;//virtual field concept
  fileType:String @Core.IsMediaType;
  content:LargeBinary @Core.MediaType        :fileType
                      @Core.ContentDisposition:fileName;
  books:Association to many Books
     on books.author=$self;
+ 
 }
 entity Chapters:cuid,managed{
     key book:Association to Books;
