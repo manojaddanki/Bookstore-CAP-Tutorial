@@ -1,5 +1,7 @@
 using {tutorial.db as db} from '../db/schema';
 service BookstoreService {
+    //@(restrict:[{grant:['READ','WRITE'], to:'admin'},{grant:'READ', to:'only-read-access'}])
+    @(restrict:[{grant:['READ','WRITE'], to:'admin'},{grant:'READ', to:'authenticated-user'}])
     entity Books as projection on db.Books actions{
         @(Common.SideEffects:{TargetProperties:['stock']})//data refershing dyanamically for add thi function
         action addStock();//for used to unbound actions exercise
@@ -27,6 +29,8 @@ service BookstoreService {
     };
     //this code is used for refresh book table item data
     @(Common.SideEffects:{TargetEntities:['/BookstoreService.EntityContainer/Books']})
+    //authorization and authentication concepts
+    @(requires:'user-that-can-call-actions')
     action addDiscount();
     entity Authors as projection on db.Authors;
     entity Chapters as projection on db.Chapters;
@@ -38,3 +42,11 @@ annotate Library.Books with @odata.draft.enabled;
 service Library {
     entity Books as projection on db.Books;
 }
+//authorization and authentication concept
+//scenario 1
+//annotate BookstoreService.Books with @requires:'admin';
+//scenario 2
+annotate BookstoreService.Books with @(
+    odata.draft.enabled,
+    requires:'admin'
+    )
